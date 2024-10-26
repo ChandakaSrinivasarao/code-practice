@@ -4,6 +4,7 @@
 
 int main(void)
 {
+
   // Enable clock to GPIOA and GPIOD
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOD, ENABLE);
 
@@ -23,6 +24,7 @@ int main(void)
 
   while(1)
   {
+    #if 0
     // Check button state and turn LEDs ON if button is pressed
     if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0))
     {
@@ -32,11 +34,12 @@ int main(void)
     {
       GPIO_ResetBits(GPIOD, GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
     }
-    // Blink LED/LEDs in an interval. Uncomment bottom and comment top part of the code
-    // GPIO_SetBits(GPIOD, GPIO_Pin_14);
-    // for(long i=0; i<SystemCoreClock/30; i++){__NOP();}
-    // GPIO_ResetBits(GPIOD, GPIO_Pin_14);
-    // for(long i=0; i<SystemCoreClock/30; i++){__NOP();}
+    #endif
+    Blink LED/LEDs in an interval. Uncomment bottom and comment top part of the code
+    GPIO_SetBits(GPIOD, GPIO_Pin_14);
+    for(long i=0; i<SystemCoreClock/30; i++){__NOP();}
+    GPIO_ResetBits(GPIOD, GPIO_Pin_14);
+    for(long i=0; i<SystemCoreClock/30; i++){__NOP();}
   }
   return 0;
 }
